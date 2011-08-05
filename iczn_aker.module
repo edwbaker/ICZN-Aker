@@ -6,15 +6,15 @@ function iczn_aker_menu() {
   $items = array();
 
   //List of open cases
-  $open_cases = array(
+  $new_cases = array(
     'title'            => 'New applications received but not published',
 	'description'      => 'A list of cases received by the permission but not published',
-	'page callback'    => 'iczn_aker_open_cases',
+	'page callback'    => 'iczn_aker_new_cases',
 	'access arguments' => 'access content',
 	'type'             => MENU_CALLBACK,
   );
-  $items['open_cases'] = $open_cases;
-  $items['content/new-applications-received-not-published'] = $open_cases; //Legacy
+  $items['new_cases'] = $new_cases;
+  $items['content/new-applications-received-not-published'] = $new_cases; //Legacy
   
   return $items;
 }
@@ -23,6 +23,6 @@ function iczn_aker_menu() {
 /**
  * List open cases
  */
-function iczn_aker_open_cases() {
+function iczn_aker_new_cases() {
   return file_get_contents('http://aker.iczn.org/cases_recieved');
 }
