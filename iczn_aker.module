@@ -1,0 +1,28 @@
+<?php
+/**
+ * Implementation of hook_menu
+ */
+function iczn_aker_menu() {
+  $items = array();
+
+  //List of open cases
+  $open_cases = array(
+    'title'            => 'New applications received but not published',
+	'description'      => 'A list of cases received by the permission but not published',
+	'page callback'    => 'iczn_aker_open_cases',
+	'access arguments' => 'access content',
+	'type'             => MENU_CALLBACK,
+  );
+  $items['open_cases'] = $open_cases;
+  $items['content/new-applications-received-not-published'] = $open_cases; //Legacy
+  
+  return $items;
+}
+
+
+/**
+ * List open cases
+ */
+function iczn_aker_open_cases() {
+  return file_get_contents('http://aker.iczn.org/cases_recieved');
+}

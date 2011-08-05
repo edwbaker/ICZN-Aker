@@ -1,0 +1,4 @@
+name = ICZN Aker
+description = Integrates iczn.org with aker.iczn.org
+package = ICZN
+core = 6.x
