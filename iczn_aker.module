@@ -5,10 +5,10 @@
 function iczn_aker_menu() {
   $items = array();
 
-  //List of open cases
+  //List of new cases
   $new_cases = array(
     'title'            => 'New applications received but not published',
-	'description'      => 'A list of cases received by the permission but not published',
+	'description'      => 'A list of Cases received by the ICZN but not published',
 	'page callback'    => 'iczn_aker_new_cases',
 	'access arguments' => 'access content',
 	'type'             => MENU_CALLBACK,
@@ -16,13 +16,31 @@ function iczn_aker_menu() {
   $items['new_cases'] = $new_cases;
   $items['content/new-applications-received-not-published'] = $new_cases; //Legacy
   
+  //List of open cases
+  $open_cases = array (
+    'title'            => 'List of open Cases',
+	'description'      => 'List of open Cases',
+	'page callback'    => 'iczn_aker_open_cases',
+	'access arguments' => 'access content',
+	'type'             => MENU_CALLBACK,
+  );
+  $items['open_cases'] = $open_cases;
+  $items['open-cases_old_link'] = $open_cases;
+  
   return $items;
 }
 
 
 /**
- * List open cases
+ * List new cases
  */
 function iczn_aker_new_cases() {
   return file_get_contents('http://aker.iczn.org/cases_recieved');
+}
+
+/**
+ * List open cases
+ */
+function iczn_aker_open_cases() {
+  return file_get_contents('http://aker.iczn.org/cases_open');
 }
