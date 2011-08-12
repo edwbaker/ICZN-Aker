@@ -7,10 +7,9 @@ function iczn_aker_menu() {
 
   //List of new cases
   $new_cases = array(
-    'title'            => 'New applications received but not published',
+    'title'            => 'New applications received but not yet published',
 	'description'      => 'A list of Cases received by the ICZN but not published',
 	'page callback'    => 'iczn_aker_new_cases',
-	'access arguments' => 'access content',
 	'type'             => MENU_CALLBACK,
   );
   $items['new_cases'] = $new_cases;
@@ -21,7 +20,6 @@ function iczn_aker_menu() {
     'title'            => 'List of open Cases',
 	'description'      => 'List of open Cases',
 	'page callback'    => 'iczn_aker_open_cases',
-	'access arguments' => 'access content',
 	'type'             => MENU_CALLBACK,
   );
   $items['open_cases'] = $open_cases;
