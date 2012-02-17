@@ -4,17 +4,17 @@
  */
 function iczn_aker_menu() {
   //List of new cases
-  $items['cases'] = array(
+  $items['case'] = array(
         'title'            => 'Case information',
-	'description'      => 'List of ICZN Cases',
-	'page callback'    => 'iczn_aker_new_cases',
+	    'description'      => 'List of ICZN Cases',
+	    'page callback'    => 'iczn_aker_goto_case',
         'access callback'  => TRUE,
         'type'             => MENU_CALLBACK,
   );
   $items['cases/new'] = array(
         'title'            => 'New applications received but not yet published',
-	'description'      => 'A list of Cases received by the ICZN but not published',
-	'page callback'    => 'iczn_aker_new_cases',
+	    'description'      => 'A list of Cases received by the ICZN but not published',
+	    'page callback'    => 'iczn_aker_new_cases',
         'access callback'  => TRUE,
         'type'             => MENU_CALLBACK,
   );
@@ -22,12 +22,12 @@ function iczn_aker_menu() {
   //List of open cases
   $items['cases/open'] = array (
         'title'            => 'List of open Cases',
-	'description'      => 'List of open Cases',
-	'page callback'    => 'iczn_aker_open_cases',
+	    'description'      => 'List of open Cases',
+	    'page callback'    => 'iczn_aker_open_cases',
         'access callback'  => TRUE,
         'type'             => MENU_CALLBACK,
   );
-  drupal_set_message('Aker menu run');
+  
   return $items;
 }
 
@@ -44,4 +44,22 @@ function iczn_aker_new_cases() {
  */
 function iczn_aker_open_cases() {
   return file_get_contents('http://aker.iczn.org/cases_open');
+}
+
+/**
+ * Goto any case
+ */
+function iczn_aker_goto_case() {
+  $case      = '3463'; //Replace with number from url
+  $term_name = 'Case '.$case;
+  
+  $results = taxonomy_get_term_by_name($term_name);
+  
+  //There should only be one
+  print_r($results);exit;
+  $tid = $results[0];
+  
+  drupal_goto('taxonomy/term/'.$tid);
+  
+  return '<p>Failed</p>';
 }
