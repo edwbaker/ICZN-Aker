@@ -1,4 +1,4 @@
 name = ICZN Aker
-description = Integrates iczn.org with aker.iczn.org
+description = Integrates iczn.org with aker.iczn.org and provides Case lookup by URL
 package = ICZN
 core = 6.x
