@@ -49,17 +49,22 @@ function iczn_aker_open_cases() {
 /**
  * Goto any case
  */
-function iczn_aker_goto_case() {
-  $case      = '3463'; //Replace with number from url
+function iczn_aker_goto_case()  {
+  global $_GET;
+  $args = explode('/', $_GET['q']);
+  if (is_int($args[1])) {
+    $case = $args[1];
+  } else {
+  	return '<p>Not a valid Case number</p>';
+  }
   $term_name = 'Case '.$case;
   
   $results = taxonomy_get_term_by_name($term_name);
   
   //There should only be one
-  print_r($results);exit;
-  $tid = $results[0];
+  $tid = $results[0]->tid;
   
   drupal_goto('taxonomy/term/'.$tid);
   
-  return '<p>Failed</p>';
+  return '<p>Failed to find Case</p>';
 }
