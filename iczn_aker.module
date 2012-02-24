@@ -1,5 +1,10 @@
  <?php
 /**
+ * Provides integration between iczn.org and aker.iczn.org and case access by url: case/xxxx
+ * Written by Ed Baker (http://ebaker.me.uk) for the ICZN (http://iczn.org)
+ */
+ 
+/**
  * Implementation of hook_menu
  */
 function iczn_aker_menu() {
@@ -47,7 +52,7 @@ function iczn_aker_open_cases() {
 }
 
 /**
- * Goto any case
+ * Goto any case via URL case/xxxx
  */
 function iczn_aker_goto_case()  {
   global $_GET;
